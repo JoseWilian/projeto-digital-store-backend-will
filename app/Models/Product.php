@@ -9,6 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+    protected $hidden = [
+    ];
+
     public function cart_items()
     {
         return $this->hasMany(CartItem::class);

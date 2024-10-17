@@ -10,15 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('product_option_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 80);
-            $table->integer('stock')->default(0);
-            $table->text('description')->nullable();
+            $table->string('specification', 40);
+            $table->integer('stock');
             $table->decimal('price', 15, 2);
-            $table->decimal('discount', 15, 2)->default(0);
-            $table->string('mark', 40)->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->string('path_image', 200)->nullable();
+            $table->unsignedBigInteger('product_option_id');
+            $table->foreign('product_option_id')->references('id')->on('product_options')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_option_items');
     }
 };

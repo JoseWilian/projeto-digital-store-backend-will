@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('city', 50);
             $table->string('state', 50);
             $table->string('zip_code', 8);
-            $table->foreignId('custumer_id')->references('id')->on('custumers')->unique()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->unique()->onDelete('cascade');
             $table->timestamps();
         });
     }
